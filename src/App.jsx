@@ -1,12 +1,11 @@
 import './App.css'
+import Game from './components/Game'  
 
 function App() {
 
   return (
     <>
-      <div>
-      <h1>Wordle</h1>
-      </div>
+      <Game />
     </>
   )
 }
