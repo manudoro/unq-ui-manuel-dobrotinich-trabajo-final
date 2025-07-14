@@ -17,6 +17,15 @@
     width: 62px;
     height: 62px;
     border-radius: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    color: white;
+    font-size: 2rem;
+
+
+
 
 
 }
