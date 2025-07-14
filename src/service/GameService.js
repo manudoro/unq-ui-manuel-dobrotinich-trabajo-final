@@ -1,3 +1,4 @@
+import axios from "axios";
 const URL = "https://word-api-hmlg.vercel.app/api";
 
 export const fetchDifficulties = async () => {
