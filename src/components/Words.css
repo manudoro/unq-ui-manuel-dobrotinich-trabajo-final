@@ -1,0 +1,28 @@
+.word-list {
+    display: flex;
+    flex-direction: column;
+    gap:0.7rem;
+}
+
+.word {
+    display: flex;
+    flex-direction: row;
+    gap: 0.7rem;
+
+}
+
+.letter {
+    background-color: gainsboro;
+    
+    width: 62px;
+    height: 62px;
+    border-radius: 5%;
+
+
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
