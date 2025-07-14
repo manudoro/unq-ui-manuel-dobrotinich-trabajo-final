@@ -1,8 +1,12 @@
 // keyboard.js
-import React, { useState } from "react";
+import { useState, useContext } from "react";
 import "./Keyboard.css";
+import { GameContext } from "../context/GameContext";
 
-const Keyboard = ({wordLength, setInputText, inputText, enterWord}) => {
+
+const Keyboard = () => {
+
+  const {sessionData, setCurrentWord , currentWord,  setNewWord} = useContext(GameContext);
 
   const handleKeyClick = (key) => {
     if (key === "Enter") {
@@ -15,25 +19,25 @@ const Keyboard = ({wordLength, setInputText, inputText, enterWord}) => {
   };
 
   const handleEnterKey = () => {
-    enterWord(inputText);
+    setNewWord(currentWord);
     
   };
 
   const handleDeleteKey = () => {
-    if (inputText.length === 0) {
+    if (currentWord.length === 0) {
       return;
     }
-    const newContent = inputText.slice(0, inputText.length - 1);
-    setInputText(newContent);
+    const newContent = currentWord.slice(0, currentWord.length - 1);
+    setCurrentWord(newContent);
   };
 
   const handleRegularKey = (key) => {
-    if (inputText.length === wordLength) {
+    if (currentWord.length === sessionData.wordLenght) {
       return;
     }
     if (!/^[a-zA-Z]$/.test(key)) return; // Ignora todo lo que no sea una letra
 
-    setInputText(inputText + key.toUpperCase());
+    setCurrentWord(currentWord + key.toUpperCase());
   };
 
   return (

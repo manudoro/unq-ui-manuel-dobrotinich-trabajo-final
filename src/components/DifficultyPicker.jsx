@@ -1,25 +1,12 @@
-import { useState, useEffect } from "react";
-import { fetchDifficulties } from "../service/GameService";
+import { useContext } from "react";
 import "./DifficultyPicker.css"; // Assuming you have some styles for the DifficultyPicker
+import { GameContext } from "../context/GameContext";
 
 
-const DifficultyPicker = ({ setDifficulty }) => {
-  const [difficulties, setDifficulties] = useState([]);
 
-    const fetchDifficultiesData = async () => {
-    try {
-      const data = await fetchDifficulties();
-      setDifficulties(data); // Update the state with fetched difficulties
-    } catch (error) {
-        
-      console.error("Error fetching difficulties:", error);
-    }
-
-    };
-    useEffect(() => {
-    fetchDifficultiesData();
-    }, []);
-
+const DifficultyPicker = () => {
+  const { difficulties, setDifficulty } = useContext(GameContext);
+  
 
   return (
     <div className="difficulty-picker">
