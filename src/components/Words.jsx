@@ -13,7 +13,8 @@ const Words = () => {
     gameOver,
     winner,
     tries,
-    previousWords,
+    notEnoughLetters
+
   } = useContext(GameContext);
 
   const [showModal, setShowModal] = useState(false);
@@ -40,7 +41,8 @@ const Words = () => {
 
   return (
     <div className="word-guesses">
-      <Modal show={failed || fetching || showModal}>
+      <Modal show={failed || fetching || showModal|| notEnoughLetters}>
+        {notEnoughLetters && <h2>Not enough letters</h2>}
         {failed && <h2>Word not found in dictionary</h2>}
         {fetching && <h2>Loading...</h2>}
         {showModal && (

@@ -1,6 +1,53 @@
-.title{
-    margin: 0.95rem;
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }
+
+.game-title-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+}
+
+
+.image-container {
+  width: 100%;                
+  overflow: hidden;          
+  display: flex;
+  justify-content: center;    
+  align-items: center;       
+}
+
+
+.image-container img {
+  height: auto;
+  width: 100%;                
+  object-fit: cover;         
+  object-position: center;   
+}
+
+.header-image-container {
+  width: 100%;             
+  overflow: hidden;   
+  height: 100px;        
+  display: flex;
+  justify-content: center;   
+  align-items: center;  
+  margin:-1rem    
+}
+
+.header-image-container img {
+  height: auto;
+  width: 30%;        
+  object-fit: cover;     
+  object-position: center;  
+}
+
 
 .word-list {
     display: flex;
@@ -27,7 +74,6 @@
     font-weight: bolder;
     color: white;
     font-size: 2rem;
-    /* Preparación para la animación */
     perspective: 1000px;
     transform-style: preserve-3d;
     transition: transform 0.6s;
@@ -50,7 +96,6 @@
 }
 
 .letter-content {
-    /* Asegurar que el contenido no se vea afectado por la transformación 3D */
     backface-visibility: hidden;
     transform-style: preserve-3d;
 }
@@ -80,11 +125,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  background-color: rgba(0, 0, 0, 0.5); 
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Asegura que esté por encima de todo */
+  z-index: 1000;
 }
 
 .modal {
@@ -114,6 +159,6 @@
     justify-content: space-around;
     align-items: center;
     padding: 1rem;
-    gap: 2rem;
+    gap: 3rem;
 }
 

@@ -4,19 +4,28 @@ import Words from "./Words";
 import Keyboard from "./Keyboard";
 import "./Words.css"; // Assuming you have some styles for the game
 import { GameContext } from "../context/GameContext";
+import GameTitle from "../assets/Wordle.svg";
 
 const Game = () => {
   const { difficulty, resetGame } = useContext(GameContext);
 
   return (
-    <div>
-      <h1 className="title">Wordle</h1>
+    <div className="game">
       {!difficulty ? (
-        <DifficultyPicker />
+        <div className="game-title-container">
+          <div className="image-container">
+          <img src={GameTitle} alt="Wordle Title" className="game-title" />
+          </div>
+          <DifficultyPicker />
+        </div>
       ) : (
         <div className="game-container">
+          <div className="header-image-container">
+          <img src={GameTitle} alt="Wordle Title" className="game-header" />
+          </div>
           <div className="game-header">
-            <h2>Difficulty: {difficulty?.name}</h2>
+            
+            <h3>Difficulty: {difficulty?.name}</h3>
             <button onClick={() => resetGame()}>Reset Game</button>
           </div>
           <Words />

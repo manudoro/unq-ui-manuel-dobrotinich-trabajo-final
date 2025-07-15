@@ -50,7 +50,7 @@ const Keyboard = () => {
               (keyvalue) => (
                 <div
                   key={keyvalue}
-                  className={`key ${letters.find(letter => letter.letter === keyvalue)?.solution || ""}`}
+                  className={`key ${letters.find(letter => letter.letter === keyvalue)?.solution || "no-selected"}`}
                   onClick={() => handleKeyClick(keyvalue)}
 
                 >
@@ -63,7 +63,7 @@ const Keyboard = () => {
             {["a", "s", "d", "f", "g", "h", "j", "k", "l", "ñ"].map((keyvalue) => (
               <div
                 key={keyvalue}
-                  className={`key ${letters.find(letter => letter.letter === keyvalue)?.solution || ""}`}
+                  className={`key ${letters.find(letter => letter.letter === keyvalue)?.solution || "no-selected"}`}
                 onClick={() => handleKeyClick(keyvalue)}
               >
                 <span>{keyvalue}</span>
@@ -75,7 +75,7 @@ const Keyboard = () => {
               (keyvalue, index) => (
                 <div
                   key={index}
-                  className={`key ${letters.find(letter => letter.letter === keyvalue)?.solution || ""}`}
+                  className={`key ${letters.find(letter => letter.letter === keyvalue)?.solution || "no-selected"}`}
                   onClick={() => handleKeyClick(keyvalue)}
                 >
                   <span>{keyvalue}</span>
