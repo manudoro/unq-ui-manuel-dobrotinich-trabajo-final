@@ -98,4 +98,10 @@
     background-color: #43A047;
 }
 
-
+.invisible-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  width: 0;
+}

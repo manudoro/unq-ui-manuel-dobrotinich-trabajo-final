@@ -1,12 +1,42 @@
 // keyboard.js
-import { useState, useContext } from "react";
+import { useRef, useContext, useEffect } from "react";
 import "./Keyboard.css";
 import { GameContext } from "../context/GameContext";
 
-
 const Keyboard = () => {
+  const {
+    sessionData,
+    setCurrentWord,
+    currentWord,
+    setNewWord,
+    fetching,
+    letters,
+  } = useContext(GameContext);
 
-  const {sessionData, setCurrentWord , currentWord,  setNewWord, fetching, letters} = useContext(GameContext);
+  const keyboardRef = useRef(null);
+
+  useEffect(() => {
+    if (keyboardRef.current) {
+      keyboardRef.current.focus();
+    }
+  }, []);
+
+  const handleInputChange = (e) => {
+  // evita que se acumule texto en el input
+  e.target.value = "";
+};
+
+const handleKeyDown = (e) => {
+  const key = e.key;
+
+  if (key === "Enter") {
+    handleKeyClick("Enter");
+  } else if (key === "Backspace") {
+    handleKeyClick("Delete");
+  } else if (/^[a-zA-ZñÑ]$/.test(key)) {
+    handleKeyClick(key.toLowerCase());
+  }
+};
 
   const handleKeyClick = (key) => {
     if (fetching) return;
@@ -21,7 +51,6 @@ const Keyboard = () => {
 
   const handleEnterKey = () => {
     setNewWord(currentWord);
-    
   };
 
   const handleDeleteKey = () => {
@@ -42,17 +71,27 @@ const Keyboard = () => {
   };
 
   return (
-    <div className="keyboard">
-      <div className="keyboardcontainer">
+    <div className="keyboard" onClick={() => keyboardRef.current?.focus()}>
+      <input
+        type="text"
+        ref={keyboardRef}
+        onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
+        autoFocus
+        className="invisible-input"
+      />
+      <div className="keyboardcontainer" >
         <div className="container">
           <div className="row">
             {["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"].map(
               (keyvalue) => (
                 <div
                   key={keyvalue}
-                  className={`key ${letters.find(letter => letter.letter === keyvalue)?.solution || ""}`}
+                  className={`key ${
+                    letters.find((letter) => letter.letter === keyvalue)
+                      ?.solution || ""
+                  }`}
                   onClick={() => handleKeyClick(keyvalue)}
-
                 >
                   <span>{keyvalue}</span>
                 </div>
@@ -60,22 +99,30 @@ const Keyboard = () => {
             )}
           </div>
           <div className="row">
-            {["a", "s", "d", "f", "g", "h", "j", "k", "l", "ñ"].map((keyvalue) => (
-              <div
-                key={keyvalue}
-                  className={`key ${letters.find(letter => letter.letter === keyvalue)?.solution || ""}`}
-                onClick={() => handleKeyClick(keyvalue)}
-              >
-                <span>{keyvalue}</span>
-              </div>
-            ))}
+            {["a", "s", "d", "f", "g", "h", "j", "k", "l", "ñ"].map(
+              (keyvalue) => (
+                <div
+                  key={keyvalue}
+                  className={`key ${
+                    letters.find((letter) => letter.letter === keyvalue)
+                      ?.solution || ""
+                  }`}
+                  onClick={() => handleKeyClick(keyvalue)}
+                >
+                  <span>{keyvalue}</span>
+                </div>
+              )
+            )}
           </div>
           <div className="row">
             {["Enter", "z", "x", "c", "v", "b", "n", "m", "Delete"].map(
               (keyvalue, index) => (
                 <div
                   key={index}
-                  className={`key ${letters.find(letter => letter.letter === keyvalue)?.solution || ""}`}
+                  className={`key ${
+                    letters.find((letter) => letter.letter === keyvalue)
+                      ?.solution || ""
+                  }`}
                   onClick={() => handleKeyClick(keyvalue)}
                 >
                   <span>{keyvalue}</span>
@@ -87,6 +134,6 @@ const Keyboard = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Keyboard;
