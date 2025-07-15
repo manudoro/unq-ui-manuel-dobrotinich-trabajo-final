@@ -6,10 +6,10 @@ import { GameContext } from "../context/GameContext";
 
 const Keyboard = () => {
 
-  const {sessionData, setCurrentWord , currentWord,  setNewWord, fetching, letters} = useContext(GameContext);
+  const {sessionData, setCurrentWord , currentWord,  setNewWord, fetching, letters, winner} = useContext(GameContext);
 
   const handleKeyClick = (key) => {
-    if (fetching) return;
+    if (fetching || winner) return;
     if (key === "Enter") {
       handleEnterKey();
     } else if (key === "Delete") {

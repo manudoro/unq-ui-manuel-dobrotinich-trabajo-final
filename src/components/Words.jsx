@@ -1,11 +1,20 @@
 import Word from "./Word";
+import Modal from "./Modal";
 import "./Words.css";
 import { useEffect, useContext, useState } from "react";
 import { GameContext } from "../context/GameContext";
 
 const Words = () => {
-  const { failed, setFailed, fetching, resetGame, gameOver, winner, tries } =
-    useContext(GameContext);
+  const {
+    failed,
+    setFailed,
+    fetching,
+    resetGame,
+    gameOver,
+    winner,
+    tries,
+    previousWords,
+  } = useContext(GameContext);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -13,15 +22,14 @@ const Words = () => {
     if (gameOver) {
       setTimeout(() => {
         setShowModal(true);
-      }, 1000);
-      return;
+      }, 1200);
     }
   }, [gameOver]);
 
   const handleClose = () => {
     setTimeout(() => {
       setFailed(false);
-    }, 650);
+    }, 900);
   };
 
   useEffect(() => {
@@ -32,31 +40,24 @@ const Words = () => {
 
   return (
     <div className="word-guesses">
-      {failed && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <h2>Word not found in dictionary</h2>
-          </div>
-        </div>
-      )}
-      {fetching && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <h2>Loading...</h2>
-          </div>
-        </div>
-      )}
-      {showModal && (
-        <div className="modal-overlay">
-          <div className="modal">
+      <Modal show={failed || fetching || showModal}>
+        {failed && <h2>Word not found in dictionary</h2>}
+        {fetching && <h2>Loading...</h2>}
+        {showModal && (
+          <div>
             <h2>
               {winner ? "Congratulations! You won!" : "Game Over! Try again."}
             </h2>
-            {winner && <h3>Attemps: {tries}</h3>}
+            {winner && (
+                <h3>Attempts: {tries}</h3>
+            )}
+            <div className="modal-buttons">
             <button onClick={resetGame}>Play Again</button>
+            <button onClick={() => setShowModal(false)}>Close</button>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </Modal>
       <div className="word-list">
         {[...Array(6)].map((_, i) => (
           <Word key={i} index={i} />

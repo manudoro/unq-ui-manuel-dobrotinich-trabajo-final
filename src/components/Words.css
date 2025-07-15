@@ -1,3 +1,7 @@
+.title{
+    margin: 0.95rem;
+}
+
 .word-list {
     display: flex;
     flex-direction: column;
@@ -90,3 +94,26 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
+
+.modal h2 {
+    margin-bottom: 0.5rem;
+}
+.modal h3 {
+    margin-top: 0.5rem;
+}
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    gap: 2rem;
+}
+

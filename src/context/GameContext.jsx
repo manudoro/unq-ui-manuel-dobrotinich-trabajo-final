@@ -97,12 +97,11 @@ const saveLetters = (result) => {
       setPreviousWords((prev) => [...prev, result]);
       setTries((prev) => prev + 1);
       setCurrentWord("");
-      setFetching(false);
       if (correctWord(result)) {
         setWinner(true);
         setGameOver(true);
       }
-      console.log(letters)
+      setFetching(false);
     }
   };
 
