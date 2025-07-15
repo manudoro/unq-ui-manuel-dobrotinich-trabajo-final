@@ -80,7 +80,7 @@ export const GameProvider = ({ children }) => {
         setGameOver(true);
       }
       setFetching(false);
-    } else if (word.length < sessionData?.wordLenght) {
+    } else if (word.length < sessionData?.wordLenght && !gameOver) {
       setNotEnoughLetters(true);
       setTimeout(() => {
         setNotEnoughLetters(false);

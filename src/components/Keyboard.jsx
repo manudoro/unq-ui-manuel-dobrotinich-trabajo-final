@@ -2,11 +2,18 @@
 import { useState, useContext } from "react";
 import "./Keyboard.css";
 import { GameContext } from "../context/GameContext";
-
+import Delete from "../assets/delete.svg"; 
 
 const Keyboard = () => {
-
-  const {sessionData, setCurrentWord , currentWord,  setNewWord, fetching, letters, winner} = useContext(GameContext);
+  const {
+    sessionData,
+    setCurrentWord,
+    currentWord,
+    setNewWord,
+    fetching,
+    letters,
+    winner,
+  } = useContext(GameContext);
 
   const handleKeyClick = (key) => {
     if (fetching || winner) return;
@@ -21,7 +28,6 @@ const Keyboard = () => {
 
   const handleEnterKey = () => {
     setNewWord(currentWord);
-    
   };
 
   const handleDeleteKey = () => {
@@ -36,8 +42,7 @@ const Keyboard = () => {
     if (currentWord.length === sessionData.wordLenght) {
       return;
     }
-    if (!/^[a-zA-ZñÑ]$/.test(key)) return; // Ignora todo lo que no sea una letra
-
+    if (!/^[a-zA-ZñÑ]$/.test(key)) return;
     setCurrentWord(currentWord + key);
   };
 
@@ -50,9 +55,11 @@ const Keyboard = () => {
               (keyvalue) => (
                 <div
                   key={keyvalue}
-                  className={`key ${letters.find(letter => letter.letter === keyvalue)?.solution || "no-selected"}`}
+                  className={`key ${
+                    letters.find((letter) => letter.letter === keyvalue)
+                      ?.solution || "no-selected"
+                  }`}
                   onClick={() => handleKeyClick(keyvalue)}
-
                 >
                   <span>{keyvalue}</span>
                 </div>
@@ -60,25 +67,33 @@ const Keyboard = () => {
             )}
           </div>
           <div className="row">
-            {["a", "s", "d", "f", "g", "h", "j", "k", "l", "ñ"].map((keyvalue) => (
-              <div
-                key={keyvalue}
-                  className={`key ${letters.find(letter => letter.letter === keyvalue)?.solution || "no-selected"}`}
-                onClick={() => handleKeyClick(keyvalue)}
-              >
-                <span>{keyvalue}</span>
-              </div>
-            ))}
+            {["a", "s", "d", "f", "g", "h", "j", "k", "l", "ñ"].map(
+              (keyvalue) => (
+                <div
+                  key={keyvalue}
+                  className={`key ${
+                    letters.find((letter) => letter.letter === keyvalue)
+                      ?.solution || "no-selected"
+                  }`}
+                  onClick={() => handleKeyClick(keyvalue)}
+                >
+                  <span>{keyvalue}</span>
+                </div>
+              )
+            )}
           </div>
           <div className="row">
             {["Enter", "z", "x", "c", "v", "b", "n", "m", "Delete"].map(
               (keyvalue, index) => (
                 <div
                   key={index}
-                  className={`key ${letters.find(letter => letter.letter === keyvalue)?.solution || "no-selected"}`}
+                  className={`key ${keyvalue} ${
+                    letters.find((letter) => letter.letter === keyvalue)
+                      ?.solution || "no-selected"
+                  }`}
                   onClick={() => handleKeyClick(keyvalue)}
                 >
-                  <span>{keyvalue}</span>
+                  <span>{keyvalue === "Delete" ? <img src={Delete} alt="delete" /> : keyvalue}</span>
                 </div>
               )
             )}
@@ -87,6 +102,6 @@ const Keyboard = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Keyboard;

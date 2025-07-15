@@ -79,9 +79,12 @@
 }
 .row:nth-child(3) .key:last-child {
   font-weight: bold;
-  font-size: 0.9rem;
-  width: 92px;
+  font-size: 0.2rem;
+  width: 80px;
 }
+
+
+
 
 
 .elsewhere {

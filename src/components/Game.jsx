@@ -14,19 +14,24 @@ const Game = () => {
       {!difficulty ? (
         <div className="game-title-container">
           <div className="image-container">
-          <img src={GameTitle} alt="Wordle Title" className="game-title" />
+            <img src={GameTitle} alt="Wordle Title" className="game-title" />
           </div>
           <DifficultyPicker />
         </div>
       ) : (
         <div className="game-container">
           <div className="header-image-container">
-          <img src={GameTitle} alt="Wordle Title" className="game-header" />
+            <img
+              src={GameTitle}
+              alt="Wordle Title"
+              className="game-header"
+              onClick={() => resetGame()}
+            />
           </div>
           <div className="game-header">
-            
             <h3>Difficulty: {difficulty?.name}</h3>
             <button onClick={() => resetGame()}>Reset Game</button>
+            
           </div>
           <Words />
           <Keyboard />
