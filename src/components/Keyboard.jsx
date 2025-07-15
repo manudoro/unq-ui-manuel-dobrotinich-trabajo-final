@@ -6,9 +6,10 @@ import { GameContext } from "../context/GameContext";
 
 const Keyboard = () => {
 
-  const {sessionData, setCurrentWord , currentWord,  setNewWord} = useContext(GameContext);
+  const {sessionData, setCurrentWord , currentWord,  setNewWord, fetching, letters} = useContext(GameContext);
 
   const handleKeyClick = (key) => {
+    if (fetching) return;
     if (key === "Enter") {
       handleEnterKey();
     } else if (key === "Delete") {
@@ -35,9 +36,9 @@ const Keyboard = () => {
     if (currentWord.length === sessionData.wordLenght) {
       return;
     }
-    if (!/^[a-zA-Z]$/.test(key)) return; // Ignora todo lo que no sea una letra
+    if (!/^[a-zA-ZñÑ]$/.test(key)) return; // Ignora todo lo que no sea una letra
 
-    setCurrentWord(currentWord + key.toUpperCase());
+    setCurrentWord(currentWord + key);
   };
 
   return (
@@ -49,8 +50,9 @@ const Keyboard = () => {
               (keyvalue) => (
                 <div
                   key={keyvalue}
-                  className="key"
+                  className={`key ${letters.find(letter => letter.letter === keyvalue)?.solution || ""}`}
                   onClick={() => handleKeyClick(keyvalue)}
+
                 >
                   <span>{keyvalue}</span>
                 </div>
@@ -58,10 +60,10 @@ const Keyboard = () => {
             )}
           </div>
           <div className="row">
-            {["a", "s", "d", "f", "g", "h", "j", "k", "l"].map((keyvalue) => (
+            {["a", "s", "d", "f", "g", "h", "j", "k", "l", "ñ"].map((keyvalue) => (
               <div
                 key={keyvalue}
-                className="key"
+                  className={`key ${letters.find(letter => letter.letter === keyvalue)?.solution || ""}`}
                 onClick={() => handleKeyClick(keyvalue)}
               >
                 <span>{keyvalue}</span>
@@ -73,7 +75,7 @@ const Keyboard = () => {
               (keyvalue, index) => (
                 <div
                   key={index}
-                  className="key"
+                  className={`key ${letters.find(letter => letter.letter === keyvalue)?.solution || ""}`}
                   onClick={() => handleKeyClick(keyvalue)}
                 >
                   <span>{keyvalue}</span>

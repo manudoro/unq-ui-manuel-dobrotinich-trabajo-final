@@ -85,3 +85,17 @@
     width: 92px;
 
 }
+
+.elsewhere {
+    background-color:#E4A81D;
+}
+
+.absent {
+    background-color: #757575;
+}
+
+.correct {
+    background-color: #43A047;
+}
+
+

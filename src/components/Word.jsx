@@ -11,7 +11,10 @@ const Word = ({ index }) => {
   return (
     <div className="word">
       {[...Array(sessionData?.wordLenght)].map((_, i) => (
-        <div key={i} className="letter">{isCurrentWord ?  currentWord[i]: index < tries ? previousWords[index][i] : "" }</div>
+        <div key={i} className={`letter ${index < tries ? "colored" + " " + previousWords[index][i].solution : ""}`}>
+          <div className="letter-content">{isCurrentWord ?  currentWord[i]: index < tries ? previousWords[index][i].letter : "" }</div>
+
+        </div>
         
       ))}
     </div>

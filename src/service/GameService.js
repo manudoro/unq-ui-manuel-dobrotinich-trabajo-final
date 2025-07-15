@@ -12,8 +12,7 @@ export const fetchDifficulties = async () => {
   }
 };
 
-
-export const fetchGameSession = async ( difficultyId ) => {
+export const fetchGameSession = async (difficultyId) => {
   try {
     const response = await axios.get(`${URL}/difficulties/${difficultyId}`);
     return response.data;
@@ -24,21 +23,51 @@ export const fetchGameSession = async ( difficultyId ) => {
   }
 };
 
-export const checkAnswer = async ( sessionId, word ) => {
+export const checkAnswer = async (sessionId, word) => {
   try {
     const answerBody = guessDTO(sessionId, word);
     const response = await axios.post(`${URL}/checkWord`, answerBody);
     return response.data;
   } catch (error) {
-    throw new Error(
-      error.response?.data?.error || "Failed to check answer"
-    );
+    if (error.response) {
+      const status = error.response.status;
+      switch (status) {
+        case 400:
+          throw new NotFoundWordError(
+            "The word does not exist in the dictionary."
+          );
+        case 404:
+          throw new NotFoundSessionIdError("Sesión no encontrada.");
+        default:
+          throw new Error(
+            error.response?.data?.error || "Failed to check the word"
+          );
+      }
+    } else {
+      throw new Error(
+        error.response?.data?.error || "Failed to check the word"
+      );
+    }
   }
 };
 
-const guessDTO = (sessionId, word) => {
-    return {
-        sessionId: sessionId,
-        word: word
-    }
+export class NotFoundSessionIdError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "NotFoundSessionIdError";
+  }
 }
+
+export class NotFoundWordError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "NotFoundWordError";
+  }
+}
+
+const guessDTO = (sessionId, word) => {
+  return {
+    sessionId: sessionId,
+    word: word,
+  };
+};
