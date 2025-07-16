@@ -13,8 +13,7 @@ const Words = () => {
     gameOver,
     winner,
     tries,
-    notEnoughLetters
-
+    notEnoughLetters,
   } = useContext(GameContext);
 
   const [showModal, setShowModal] = useState(false);
@@ -41,21 +40,23 @@ const Words = () => {
 
   return (
     <div className="word-guesses">
-      <Modal show={failed || fetching || showModal|| notEnoughLetters}>
-        {notEnoughLetters && <h2>Not enough letters</h2>}
-        {failed && <h2>Word not found in dictionary</h2>}
-        {fetching && <h2>Loading...</h2>}
+      {(notEnoughLetters || failed) && (
+        <div id="wordle-toast" class="wordle-toast hidden">
+          {notEnoughLetters && <p>Not enough letters!</p>}
+          {failed && <p>Word not found in dictionary</p>}
+        </div>
+      )}
+      <Modal show={showModal}>
+
         {showModal && (
           <div>
             <h2>
               {winner ? "Congratulations! You won!" : "Game Over! Try again."}
             </h2>
-            {winner && (
-                <h3>Attempts: {tries}</h3>
-            )}
+            {winner && <h3>Attempts: {tries}</h3>}
             <div className="modal-buttons">
-            <button onClick={resetGame}>Play Again</button>
-            <button onClick={() => setShowModal(false)}>Close</button>
+              <button onClick={resetGame}>Play Again</button>
+              <button onClick={() => setShowModal(false)}>Close</button>
             </div>
           </div>
         )}
