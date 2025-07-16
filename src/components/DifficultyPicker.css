@@ -2,3 +2,31 @@
     display: flex;
     gap: 1rem
 }
+
+.image-container {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container img {
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.difficulty-picker {
+    margin-top:8rem;
+}
+
+@media (max-width: 767px) {
+  .difficulty-options {
+    gap: 0.5rem
+  }
+ .image-container {
+    width: 65%;
+  }
+
+}

@@ -1,73 +1,104 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.game-title-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-image-container {
+  width: 100%;
+  overflow: hidden;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -1rem;
+}
+
+.header-image-container img {
+  height: auto;
+  width: 30%;
+  object-fit: cover;
+  object-position: center;
+  cursor: pointer;
+}
+
 .word-list {
-    display: flex;
-    flex-direction: column;
-    gap:0.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
 }
 
 .word {
-    display: flex;
-    flex-direction: row;
-    gap: 0.7rem;
-
+  display: flex;
+  flex-direction: row;
+  gap: 0.4rem;
 }
 
 .letter {
-    background-color: gainsboro;
-    text-transform: capitalize;
-    width: 62px;
-    height: 62px;
-    border-radius: 5%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bolder;
-    color: white;
-    font-size: 2rem;
-    /* Preparación para la animación */
-    perspective: 1000px;
-    transform-style: preserve-3d;
-    transition: transform 0.6s;
+  background-color: lightgrey;
+  text-transform: capitalize;
+  width: 3.25rem;
+  height: 3.30rem;
+  border-radius: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+  color: black;
+  font-size: 2rem;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
 }
 
 .letter.colored {
-    animation: flip 0.6s ease-out;
+  animation: flip 0.6s ease-out;
+  color: white
 }
 
 @keyframes flip {
-    0% {
-        transform: rotateY(0deg);
-    }
-    50% {
-        transform: rotateY(90deg);
-    }
-    100% {
-        transform: rotateY(0deg);
-    }
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(90deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
 }
 
 .letter-content {
-    /* Asegurar que el contenido no se vea afectado por la transformación 3D */
-    backface-visibility: hidden;
-    transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
 }
 
-
 .elsewhere {
-    background-color:#E4A81D;
+  background-color: #e4a81d;
 }
 
 .absent {
-    background-color: #757575;
+  background-color: #757575;
 }
 
 .correct {
-    background-color: #43A047;
+  background-color: #43a047;
 }
 
 .game-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .modal-overlay {
@@ -76,11 +107,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Asegura que esté por encima de todo */
+  z-index: 1000;
 }
 
 .modal {
@@ -90,3 +121,84 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
+
+.modal h2 {
+  margin-bottom: 0.5rem;
+}
+.modal h3 {
+  margin-top: 0.5rem;
+}
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem;
+  gap: 3rem;
+}
+
+.fetching {
+  background: linear-gradient(90deg, #d0d0d0 25%, #c0c0c0 50%, #d0d0d0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  color:#949494
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+}
+
+.failed {
+  animation: shake 0.4s ease-in-out;
+  background-color: #FFD6DE;
+    color: #D32F2F; 
+}
+
+.wordle-toast {
+  position: fixed;
+  top: 20px; 
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #FFD6DE;
+  color: #D32F2F; 
+  padding: 0px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  text-align: center;
+  z-index: 1000;
+  transition: top 0.3s ease-out, opacity 0.3s ease;
+}
+
+@media (max-width: 767px),(max-height: 800px){
+  .game-header {
+    padding: 0;
+  }
+
+  .letter {
+    width: 2.70rem;
+    height: 2.75rem;
+  }
+}
+
+
+

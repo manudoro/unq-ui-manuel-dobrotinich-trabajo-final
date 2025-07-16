@@ -2,6 +2,7 @@
 import { useRef, useContext, useEffect } from "react";
 import "./Keyboard.css";
 import { GameContext } from "../context/GameContext";
+import Delete from "../assets/delete.svg"; 
 
 const Keyboard = () => {
   const {
@@ -11,6 +12,7 @@ const Keyboard = () => {
     setNewWord,
     fetching,
     letters,
+    winner,
   } = useContext(GameContext);
 
   const keyboardRef = useRef(null);
@@ -22,7 +24,6 @@ const Keyboard = () => {
   }, []);
 
   const handleInputChange = (e) => {
-  // evita que se acumule texto en el input
   e.target.value = "";
 };
 
@@ -39,7 +40,7 @@ const handleKeyDown = (e) => {
 };
 
   const handleKeyClick = (key) => {
-    if (fetching) return;
+    if (fetching || winner) return;
     if (key === "Enter") {
       handleEnterKey();
     } else if (key === "Delete") {
@@ -65,8 +66,7 @@ const handleKeyDown = (e) => {
     if (currentWord.length === sessionData.wordLenght) {
       return;
     }
-    if (!/^[a-zA-ZñÑ]$/.test(key)) return; // Ignora todo lo que no sea una letra
-
+    if (!/^[a-zA-ZñÑ]$/.test(key)) return;
     setCurrentWord(currentWord + key);
   };
 
@@ -89,7 +89,7 @@ const handleKeyDown = (e) => {
                   key={keyvalue}
                   className={`key ${
                     letters.find((letter) => letter.letter === keyvalue)
-                      ?.solution || ""
+                      ?.solution || "no-selected"
                   }`}
                   onClick={() => handleKeyClick(keyvalue)}
                 >
@@ -105,7 +105,8 @@ const handleKeyDown = (e) => {
                   key={keyvalue}
                   className={`key ${
                     letters.find((letter) => letter.letter === keyvalue)
-                      ?.solution || ""
+                      ?.solution || "no-selected"
+
                   }`}
                   onClick={() => handleKeyClick(keyvalue)}
                 >
@@ -119,13 +120,14 @@ const handleKeyDown = (e) => {
               (keyvalue, index) => (
                 <div
                   key={index}
-                  className={`key ${
+
+                  className={`key ${keyvalue} ${
                     letters.find((letter) => letter.letter === keyvalue)
-                      ?.solution || ""
+                      ?.solution || "no-selected"
                   }`}
                   onClick={() => handleKeyClick(keyvalue)}
                 >
-                  <span>{keyvalue}</span>
+                  <span>{keyvalue === "Delete" ? <img src={Delete} alt="delete" /> : keyvalue}</span>
                 </div>
               )
             )}
