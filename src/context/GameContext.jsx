@@ -6,7 +6,6 @@ import {
   NotFoundWordError,
   NotFoundSessionIdError,
 } from "../service/GameService";
-import { set } from "fp-ts";
 
 export const GameContext = createContext();
 
