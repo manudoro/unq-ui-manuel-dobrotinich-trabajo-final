@@ -31,7 +31,7 @@
 .header-image-container {
   width: 100%;
   overflow: hidden;
-  height: 100px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,8 +61,8 @@
 .letter {
   background-color: lightgrey;
   text-transform: capitalize;
-  width: 3.25rem;
-  height: 3.30rem;
+  width: 2.70rem;
+  height: 2.75rem;
   border-radius: 3%;
   display: flex;
   justify-content: center;
