@@ -13,29 +13,14 @@
   gap: 0.5rem;
 }
 
-.image-container {
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.image-container img {
-  height: auto;
-  width: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
 .header-image-container {
   width: 100%;
   overflow: hidden;
-  height: 100px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: -1rem;
+  margin-bottom: -1rem;
 }
 
 .header-image-container img {
@@ -113,6 +98,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
 }
 
 .modal-overlay {
@@ -202,5 +188,17 @@
   z-index: 1000;
   transition: top 0.3s ease-out, opacity 0.3s ease;
 }
+
+@media (max-width: 767px),(max-height: 800px){
+  .game-header {
+    padding: 0;
+  }
+
+  .letter {
+    width: 2.70rem;
+    height: 2.75rem;
+  }
+}
+
 
 

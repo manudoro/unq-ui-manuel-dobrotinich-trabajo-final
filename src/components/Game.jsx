@@ -13,9 +13,6 @@ const Game = () => {
     <div className="game">
       {!difficulty ? (
         <div className="game-title-container">
-          <div className="image-container">
-            <img src={GameTitle} alt="Wordle Title" className="game-title" />
-          </div>
           <DifficultyPicker />
         </div>
       ) : (

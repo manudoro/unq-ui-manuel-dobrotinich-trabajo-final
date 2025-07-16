@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin:2rem
 }
 
 .textcontainer {
@@ -103,4 +104,32 @@
 .correct {
   background-color: #43a047;
   color: #ffffff;
+}
+
+
+@media (max-width: 767px),(max-height: 800px){
+  
+.keyboard{
+  margin: 0;
+}
+.key {
+  display: flex;
+  width: 1.8rem;
+  height: 2.7rem;
+  margin: 0.2rem;
+  font-size: 1.25rem;
+
+}
+
+.row:nth-child(3) .key:first-child {
+  font-size: 0.7rem;
+  width: 2.8rem;
+}
+
+.row:nth-child(3) .key:last-child {
+  width: 2.8rem;
+}
+
+
+
 }
