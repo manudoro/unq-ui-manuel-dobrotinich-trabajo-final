@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+
 import {
   fetchGameSession,
   fetchDifficulties,
@@ -38,7 +39,7 @@ export const GameProvider = ({ children }) => {
 
   const checkWord = async (word) => {
     try {
-      const result = await checkAnswer(sessionData?.sessionId, word);
+      const result = await checkAnswer(sessionData?.sessionId, word.toLowerCase());
       return result;
     } catch (error) {
       if (error instanceof NotFoundWordError) {

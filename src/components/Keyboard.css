@@ -106,7 +106,13 @@
   color: #ffffff;
 }
 
-
+.invisible-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  width: 0;
+}
 @media (max-width: 767px),(max-height: 800px){
   
 .keyboard{
@@ -129,7 +135,5 @@
 .row:nth-child(3) .key:last-child {
   width: 2.8rem;
 }
-
-
-
 }
+
